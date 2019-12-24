@@ -81,4 +81,20 @@ email: jack@gmail.com  password: 123456
 email: noha@gmail.com  password: 123456
 ```` 
 
+##  DB SQL query to find the Id of the patient who has the largest number of invoices. If there is more than one patient with the same number of invoices, then it print the one with the smallest Id
+
+````
+SELECT t.id 
+FROM (
+SELECT u.id , COUNT(i.id) as count FROM users u 
+LEFT JOIN invoices i 
+ON u.id = i.user_id
+WHERE u.role = 'patient'
+group by u.id
+order by count desc , u.id asc
+) as t 
+group by t.id
+limit 1;
+````
+
 That's it.
