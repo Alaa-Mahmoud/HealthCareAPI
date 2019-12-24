@@ -65,12 +65,20 @@ And go to http://localhost:8000/api/documentation
 
 Note: 
 
-agent account email: mark@gmail.com password: 123456
+##agent account
+````
+email: mark@gmail.com password: 123456
+````
 
-patient accounts:
-email: maria@gmail.com password: 123456
-email: jack@gmail.com  password: 123456
+##patient accounts
+````
+email: maria@gmail.com password: 123456 
+```` 
+````
+email: jack@gmail.com  password: 123456 
+````
+````
 email: noha@gmail.com  password: 123456
-
+```` 
 
 That's it.
