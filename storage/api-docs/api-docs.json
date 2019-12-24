@@ -1,0 +1,439 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "This is Health care center cool API",
+        "description": "Api description...",
+        "termsOfService": "",
+        "contact": {
+            "email": "alaa.mahmoud.awad58@gmail.com"
+        },
+        "license": {
+            "name": "Private License",
+            "url": "URL to the license"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/medical-services": {
+            "get": {
+                "tags": [
+                    "Medical Services"
+                ],
+                "summary": "list and/or filter medical services by name and/or description and/or type.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": " Medical service name.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "query",
+                        "description": " Medical service discription.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": " Medical service type.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "size of list returned  per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page numbetr.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Medical Services"
+                ],
+                "summary": "Create medical service.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "name of the medical service.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the medical service.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "medical_service_type_id",
+                        "in": "formData",
+                        "description": "ID of medical service type.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": " Price of the medical service 'price format only 2 digits after the point x.xx' .",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "422": {
+                        "description": "unprocessable entity"
+                    },
+                    "403": {
+                        "description": "forbidden"
+                    }
+                }
+            }
+        },
+        "/medical-services/{medical_service}": {
+            "put": {
+                "tags": [
+                    "Medical Services"
+                ],
+                "summary": "Update medical service.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "medical_service",
+                        "in": "path",
+                        "description": "ID of the medical service.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "name",
+                        "in": "formData",
+                        "description": "name of the medical service.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "description",
+                        "in": "formData",
+                        "description": "Description of the medical service.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "medical_service_type_id",
+                        "in": "formData",
+                        "description": "ID of medical service type.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "price",
+                        "in": "formData",
+                        "description": " Price of the medical service 'price format only 2 digits after the point x.xx' .",
+                        "required": false,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "422": {
+                        "description": "unprocessable entity"
+                    }
+                }
+            }
+        },
+        "/medical-service-types": {
+            "get": {
+                "tags": [
+                    "Medical Service Types"
+                ],
+                "summary": "List medical service types.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "size of list returned  per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page numbetr.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/invoices": {
+            "get": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "list all invoices or invoices of specific patient.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "patient",
+                        "in": "query",
+                        "description": "ID of the patient.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "size of list returned  per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page numbetr.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Agent Create invoice for patient.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "formData",
+                        "description": "ID of patient.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "discount",
+                        "in": "formData",
+                        "description": "discount for the invoice.",
+                        "required": false,
+                        "type": "float"
+                    },
+                    {
+                        "name": "discount_type",
+                        "in": "formData",
+                        "description": "discount type could be flat or percentage.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "medical_service_ids[]",
+                        "in": "formData",
+                        "description": "",
+                        "required": false,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int32"
+                        },
+                        "collectionFormat": "multi",
+                        "uniqueItems": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/invoices/{invoice}/pay": {
+            "post": {
+                "tags": [
+                    "Invoices"
+                ],
+                "summary": "Update medical service.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "invoice",
+                        "in": "path",
+                        "description": "ID of the invoice.",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "provider",
+                        "in": "formData",
+                        "description": "name of payment gateway profider 'ProviderX / ProviderY'.",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "created"
+                    },
+                    "400": {
+                        "description": "bad request"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User Login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "User Email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "User Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "401": {
+                        "description": "unauthorized"
+                    }
+                }
+            }
+        },
+        "/patients/invoices": {
+            "get": {
+                "tags": [
+                    "Patients invoices"
+                ],
+                "summary": "List patient invoices.",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Authorization Token.",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "perPage",
+                        "in": "query",
+                        "description": "size of list returned  per page.",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page numbetr.",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
